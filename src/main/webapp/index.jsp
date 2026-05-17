@@ -1,354 +1,126 @@
-<!-- ===== Add these styles inside your existing <style> tag ===== -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>NexusShop | Immersive E‑Commerce</title>
+    <!-- Google Fonts + Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-/* =========================
-   MODERN UI UPGRADE
-========================= */
+        :root {
+            --bg: #ffffff;
+            --bg-secondary: #fbfdfe;
+            --primary-dark: #0b1e2f;
+            --primary: #132e44;
+            --accent: #3b82f6;
+            --accent-glow: #60a5fa;
+            --accent-secondary: #06b6d4;
+            --card-bg: rgba(255,255,255,0.9);
+            --muted: #5b6e8c;
+            --muted-light: #8f9eb5;
+            --border: #eef2f8;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --shadow-sm: 0 12px 30px rgba(0, 0, 0, 0.04), 0 4px 8px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 20px 35px -8px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 24px 40px -12px rgba(0, 0, 0, 0.12);
+            --radius-card: 24px;
+            --radius-element: 40px;
+            --transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+        }
 
-:root{
-    --primary:#111827;
-    --secondary:#1f2937;
-    --accent:#7c3aed;
-    --accent2:#06b6d4;
-    --light:#f8fafc;
-    --white:#ffffff;
-    --text:#0f172a;
-    --muted:#64748b;
-    --shadow:0 10px 30px rgba(0,0,0,0.08);
-}
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-secondary);
+            color: var(--primary);
+            overflow-x: hidden;
+        }
 
-/* Smooth */
-html{
-    scroll-behavior:smooth;
-}
+        /* glass morphism & smooth scroll */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(59,130,246,0.08);
+        }
 
-/* Body */
-body{
-    background:linear-gradient(to bottom,#f8fafc,#eef2ff);
-    color:var(--text);
-}
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
 
-/* Header */
-header{
-    background:rgba(255,255,255,0.8);
-    backdrop-filter:blur(14px);
-    border-bottom:1px solid rgba(255,255,255,0.3);
-    box-shadow:0 4px 20px rgba(0,0,0,0.03);
-}
+        /* header */
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 14px 0;
+            flex-wrap: wrap;
+        }
 
-/* Brand */
-.brand{
-    font-size:24px;
-    letter-spacing:-1px;
-}
+        .brand {
+            font-family: 'Space Grotesk', monospace;
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #0f2c3f 0%, #1e4b6e 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .brand .accent {
+            background: linear-gradient(125deg, var(--accent), #22d3ee);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
 
-.brand .accent{
-    background:linear-gradient(90deg,var(--accent),var(--accent2));
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-}
+        nav.main-nav ul {
+            display: flex;
+            gap: 6px;
+            list-style: none;
+        }
 
-/* Nav */
-nav.main-nav li a{
-    transition:0.3s ease;
-    position:relative;
-}
+        nav.main-nav li a {
+            padding: 8px 18px;
+            border-radius: 100px;
+            font-weight: 500;
+            transition: var(--transition);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
 
-nav.main-nav li a:hover{
-    color:var(--accent);
-    background:rgba(124,58,237,0.08);
-}
+        nav.main-nav li a:hover {
+            background: rgba(59,130,246,0.08);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
 
-/* Search */
-.search{
-    background:white;
-    box-shadow:var(--shadow);
-    border:1px solid rgba(0,0,0,0.04);
-}
-
-/* Hero Section */
-.hero{
-    min-height:650px;
-    border-radius:0 0 40px 40px;
-    position:relative;
-    overflow:hidden;
-}
-
-.hero::before{
-    content:'';
-    position:absolute;
-    inset:0;
-    background:linear-gradient(
-        135deg,
-        rgba(124,58,237,0.7),
-        rgba(6,182,212,0.5)
-    );
-    z-index:0;
-}
-
-.hero .container{
-    position:relative;
-    z-index:1;
-}
-
-.hero h1{
-    font-size:68px;
-    line-height:1.1;
-    max-width:850px;
-    margin:auto;
-    margin-bottom:20px;
-    font-weight:700;
-}
-
-.hero p{
-    font-size:18px;
-    max-width:700px;
-    margin:auto;
-    opacity:0.95;
-}
-
-/* Buttons */
-.btn{
-    transition:0.3s ease;
-    box-shadow:var(--shadow);
-}
-
-.btn:hover{
-    transform:translateY(-4px);
-}
-
-.btn-primary{
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    color:white;
-}
-
-.btn-ghost{
-    border:1px solid rgba(255,255,255,0.4);
-}
-
-/* Section Titles */
-.title h2{
-    font-size:40px;
-    margin-bottom:8px;
-    color:var(--primary);
-}
-
-.title p{
-    font-size:16px;
-}
-
-/* Category Cards */
-.cat-card{
-    background:rgba(255,255,255,0.75);
-    backdrop-filter:blur(12px);
-    border:1px solid rgba(255,255,255,0.4);
-    transition:0.4s ease;
-    padding:30px 20px;
-}
-
-.cat-card:hover{
-    transform:translateY(-10px) scale(1.03);
-    box-shadow:0 20px 50px rgba(124,58,237,0.15);
-}
-
-.cat-card .icon{
-    width:70px;
-    height:70px;
-    margin:auto;
-    border-radius:20px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    color:white;
-    font-size:30px;
-}
-
-/* Product Cards */
-.product{
-    position:relative;
-    overflow:hidden;
-    border-radius:22px;
-    background:white;
-    transition:0.4s ease;
-    border:1px solid rgba(0,0,0,0.04);
-}
-
-.product:hover{
-    transform:translateY(-12px);
-    box-shadow:0 25px 60px rgba(0,0,0,0.12);
-}
-
-.product img{
-    transition:0.5s ease;
-}
-
-.product:hover img{
-    transform:scale(1.08);
-}
-
-/* Product Overlay */
-.product::after{
-    content:'';
-    position:absolute;
-    inset:0;
-    background:linear-gradient(to top,rgba(0,0,0,0.1),transparent);
-    pointer-events:none;
-}
-
-/* Product Body */
-.product-body{
-    padding:20px;
-}
-
-.product h5{
-    font-size:18px;
-}
-
-/* Price */
-.price{
-    font-size:22px;
-    color:var(--accent);
-}
-
-/* Add Button */
-.add-btn{
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    border:none;
-    transition:0.3s ease;
-}
-
-.add-btn:hover{
-    transform:scale(1.03);
-}
-
-/* Wishlist */
-.wish-btn{
-    background:#f1f5f9;
-    border:none;
-    transition:0.3s ease;
-}
-
-.wish-btn:hover{
-    background:var(--accent);
-    color:white;
-}
-
-/* Deal Section */
-.deal{
-    border-radius:30px;
-    overflow:hidden;
-    background:white;
-    box-shadow:0 20px 60px rgba(0,0,0,0.08);
-}
-
-.deal img{
-    transition:0.5s ease;
-}
-
-.deal:hover img{
-    transform:scale(1.05);
-}
-
-.time-box{
-    background:linear-gradient(135deg,var(--accent),var(--accent2));
-    box-shadow:var(--shadow);
-}
-
-/* Testimonials */
-.testimonial{
-    border-radius:24px;
-    background:rgba(255,255,255,0.85);
-    backdrop-filter:blur(10px);
-    border:1px solid rgba(255,255,255,0.5);
-    transition:0.3s ease;
-}
-
-.testimonial:hover{
-    transform:translateY(-8px);
-}
-
-/* Newsletter */
-.newsletter{
-    border-radius:32px;
-    background:linear-gradient(
-        135deg,
-        var(--accent),
-        var(--accent2)
-    );
-    box-shadow:0 20px 50px rgba(124,58,237,0.2);
-}
-
-.newsletter h3{
-    font-size:38px;
-}
-
-.newsletter input{
-    background:white;
-    box-shadow:var(--shadow);
-}
-
-/* Footer */
-footer{
-    background:#0f172a;
-    color:#cbd5e1;
-    margin-top:60px;
-}
-
-footer .muted{
-    color:#94a3b8;
-}
-
-footer .icon-btn{
-    color:white;
-    background:rgba(255,255,255,0.08);
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transition:0.3s ease;
-}
-
-footer .icon-btn:hover{
-    background:linear-gradient(
-        135deg,
-        var(--accent),
-        var(--accent2)
-    );
-}
-
-/* Scrollbar */
-::-webkit-scrollbar{
-    width:10px;
-}
-
-::-webkit-scrollbar-thumb{
-    background:linear-gradient(
-        var(--accent),
-        var(--accent2)
-    );
-    border-radius:10px;
-}
-
-/* Responsive */
-@media(max-width:768px){
-
-    .hero{
-        min-height:520px;
-    }
-
-    .hero h1{
-        font-size:42px;
-    }
-
-    .title h2{
-        font-size:32px;
-    }
-
-    .newsletter h3{
-        font-size:28px;
-    }
-}
-</style>
+        .search {
+            background: white;
+            border-radius: 60px;
+            padding: 6px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        .search:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+        }
+        .search input {
+            border: non
